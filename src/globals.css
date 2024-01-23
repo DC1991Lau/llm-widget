@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 224 71.4% 4.1%;
+
+  /* AMARELO */
+  --primary: 48 100% 50%;
+  --primary-foreground: 0 0% 26%;
+  --primary-hover: 48 99% 70%;
+
+  /* VERMELHO */
+  --secondary: 347 86% 44%;
+  --secondary-foreground: 0 0% 100%;
+
+  /* NEUTRAL */
+
+  --border: 220 13% 91%;
+  --input: 220 13% 91%;
+  --ring: 224 71.4% 4.1%;
+
+  --radius: 0.5rem;
+}
