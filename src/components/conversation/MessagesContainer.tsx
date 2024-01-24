@@ -1,6 +1,7 @@
-import Message from "./Message";
+import MessageBubble from "./Message";
 import { useStore } from "@/store/app.store";
 import { useEffect, useRef } from "react";
+import { ScrollArea } from "../ui/scroll-area";
 
 export default function MessageContainer() {
   const { messages } = useStore();
@@ -16,10 +17,15 @@ export default function MessageContainer() {
   }, [messages]);
 
   return (
-    <main className="flex-1 overflow-y-auto p-6 space-y-4">
-      {messages.map((message) => (
-        <Message message={message} key={message.id} />
-      ))}
-    </main>
+    <ScrollArea className="flex flex-col px-6 pt-[21px] h-full max-w-full flex-grow-0 bg-white">
+      <div className="flex flex-col gap-[24px]" ref={ref}>
+        {
+          messages.map(message => (
+            <MessageBubble message={message} key={message.id} />
+          ))
+        }
+      </div>
+
+    </ScrollArea>
   );
 }

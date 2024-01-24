@@ -1,6 +1,7 @@
 import { Message } from "@/types";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
+import { RemoteRunnable } from "langchain/runnables/remote";
 
 export async function postMessageToService({ message }: { message: Message }) {
   await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -34,4 +35,22 @@ export async function postMessageToService({ message }: { message: Message }) {
   });
 
   return formattedMessage;
+}
+
+export async function getMessageFromLLM() {
+  const remoteChain = new RemoteRunnable({
+    url: "https://langserve-launch-example-vz4y4ooboq-uc.a.run.app/",
+  });
+
+  const stream = await remoteChain.stream({
+  }, {
+    configurable: {
+      llm: 'medium_temp',
+      prompt: 'What is the days of the week?'
+    }
+  });
+
+  for await (const chunk of stream) {
+    console.log(chunk);
+  }
 }
